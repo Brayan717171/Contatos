@@ -1,0 +1,54 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #f3f4f6;
+  }
+  
+  input::placeholder {
+    color: #9ca3af;
+    font-size: 0.875rem;
+  }
+  
+  .table-header {
+    background: #3b82f6;
+  }
+  
+  .btn-upload {
+    border: 1.5px solid #2563eb;
+    color: #2563eb;
+  }
+  
+  .btn-upload:hover {
+    background: #eff6ff;
+  }
+  
+  .toast {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 999;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+  
+  .toast.show {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
+  .toast.success {
+    background: #22c55e;
+  }
+  
+  .toast.error {
+    background: #ef4444;
+  }
+  
+  tr:hover td {
+    background: #f0f6ff;
+    transition: background 0.15s;
+  }
