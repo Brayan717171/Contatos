@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Contatos</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="./style.css">
-    <script src="./app.js" type="module" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Contatos</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./app.js" type="module" defer></script>
 </head>
 <body class="min-h-screen bg-gray-100 p-6">
 
@@ -18,29 +18,21 @@
   <!-- Formulário -->
   <div class="bg-white rounded-lg shadow p-6 mb-6">
     <div class="flex flex-wrap gap-3 mb-3">
-      <input id="inp-nome" type="text" placeholder="Nome *"
-        class="border border-gray-300 rounded px-3 py-2 text-sm w-44 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-      <input id="inp-celular" type="text" placeholder="Celular *"
-        class="border border-gray-300 rounded px-3 py-2 text-sm w-44 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-      <input id="inp-email" type="email" placeholder="Email *"
-        class="border border-gray-300 rounded px-3 py-2 text-sm w-52 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-      <input id="inp-cidade" type="text" placeholder="Cidade *"
-        class="border border-gray-300 rounded px-3 py-2 text-sm w-40 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+      <input id="inp-nome"     type="text"  placeholder="Nome *"    class="input-field w-44">
+      <input id="inp-celular"  type="text"  placeholder="Celular *" class="input-field w-44">
+      <input id="inp-email"    type="email" placeholder="Email *"   class="input-field w-52">
+      <input id="inp-cidade"   type="text"  placeholder="Cidade *"  class="input-field w-40">
     </div>
     <div class="flex flex-wrap items-center gap-3">
-      <input id="inp-endereco" type="text" placeholder="Endereço *"
-        class="border border-gray-300 rounded px-3 py-2 text-sm w-44 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+      <input id="inp-endereco" type="text" placeholder="Endereço *" class="input-field w-44">
+      <input id="inp-url" type="text" placeholder="URL FOTO *" class="input-field w-44">
 
-      <input id="upload-foto" type="file" accept="image/*" class="hidden">
-      <button id="btn-upload" class="btn-upload font-semibold px-4 py-2 rounded text-sm transition-colors cursor-pointer">
-        UPLOAD FOTO
-      </button>
       <img id="foto-preview" src="" alt="Preview" class="w-10 h-10 rounded-full object-cover hidden border border-gray-300">
 
       <button id="btn-cadastrar"
-        class="flex items-center gap-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2 rounded text-sm transition-colors cursor-pointer">
+        class="flex items-center gap-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2 rounded text-sm transition-colors cursor-pointer disabled:opacity-50">
         <i class="fa-solid fa-user-plus mr-2"></i> CADASTRAR CONTATO
-      </button>
+    </button>
 
       <button id="btn-cancelar"
         class="flex items-center gap-1 border border-gray-300 text-gray-500 hover:bg-gray-100 font-semibold px-4 py-2 rounded text-sm transition-colors cursor-pointer">
@@ -49,30 +41,28 @@
     </div>
   </div>
 
-
-  
   <!-- Tabela -->
   <div class="bg-white rounded-lg shadow overflow-hidden">
     <table class="w-full table-auto">
       <thead>
-        <tr class="table-header text-white text-sm">
-          <th class="px-4 py-3 text-left font-semibold">Foto</th>
-          <th class="px-4 py-3 text-left font-semibold">Nome</th>
-          <th class="px-4 py-3 text-left font-semibold">Celular</th>
-          <th class="px-4 py-3 text-left font-semibold">Email</th>
-          <th class="px-4 py-3 text-left font-semibold">Endereço</th>
-          <th class="px-4 py-3 text-left font-semibold">Cidade</th>
-          <th class="px-4 py-3 text-left font-semibold">Ações</th>
+        <tr class="bg-blue-500 text-white text-sm">
+          <td class="px-4 py-3 font-semibold">id</td>
+          <td class="px-4 py-3 font-semibold">Foto</td>
+          <td class="px-4 py-3 font-semibold">Nome</td>
+          <td class="px-4 py-3 font-semibold">Celular</td>
+          <td class="px-4 py-3 font-semibold">Email</td>
+          <td class="px-4 py-3 font-semibold">Endereço</td>
+          <td class="px-4 py-3 font-semibold">Cidade</td>
+          <td class="px-4 py-3 font-semibold">Ações</td>
         </tr>
       </thead>
       <tbody id="tbody-contatos">
         <tr>
-          <td colspan="7" class="text-center text-gray-400 py-8">Carregando contatos...</td>
+          <td colspan="8" class="text-center text-gray-400 py-8">Carregando contatos...</td>
         </tr>
       </tbody>
     </table>
   </div>
-
 
 </body>
 </html>

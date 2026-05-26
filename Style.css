@@ -1,30 +1,31 @@
 body {
   font-family: 'Segoe UI', sans-serif;
-  background: #f3f4f6;
 }
 
-input::placeholder {
-  color: #9ca3af;
+.input-field {
+  border: 1px solid #D1D5DB;
+  border-radius: 4px;
+  padding: 8px 12px;
   font-size: 0.875rem;
+  outline: none;
+  transition: box-shadow 0.15s, border-color 0.15s;
 }
-
-.table-header {
-  background: #3b82f6;
+.input-field::placeholder { color: #9CA3AF; }
+.input-field:focus {
+  border-color: #3B82F6;
+  box-shadow: 0 0 0 3px rgba(59,130,246,0.15);
 }
 
 .btn-upload {
-  border: 1.5px solid #2563eb;
-  color: #2563eb;
+  border: 1.5px solid #2563EB;
+  color: #2563EB;
+  background: transparent;
 }
-
-.btn-upload:hover {
-  background: #eff6ff;
-}
+.btn-upload:hover { background: #EFF6FF; }
 
 .toast {
   position: fixed;
-  top: 24px;
-  right: 24px;
+  top: 24px; right: 24px;
   z-index: 999;
   padding: 12px 20px;
   border-radius: 8px;
@@ -34,21 +35,266 @@ input::placeholder {
   transition: opacity 0.3s;
   pointer-events: none;
 }
+.toast.show  { opacity: 1; pointer-events: auto; }
+.toast.success { background: #22C55E; }
+.toast.error   { background: #EF4444; }
 
-.toast.show {
-  opacity: 1;
-  pointer-events: auto;
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.toast.success {
-  background: #22c55e;
+:root {
+  --branco:      #ffffff;
+  --fundo:       #f4f5f7;
+  --borda:       #d0d5dd;
+  --texto:       #1a1a2e;
+  --texto-fraco: #6b7280;
+  --azul:        #2563eb;
+  --azul-fraco:  #eff6ff;
+  --vermelho:    #dc2626;
+  --vermelho-fraco: #fef2f2;
+  --verde:       #16a34a;
+  --raio:        6px;
+  --sombra:      0 1px 4px rgba(0,0,0,0.08);
 }
 
-.toast.error {
-  background: #ef4444;
+body {
+  font-family: 'Georgia', serif;
+  background: var(--fundo);
+  color: var(--texto);
+  font-size: 14px;
+  line-height: 1.5;
 }
 
-tr:hover td {
-  background: #f0f6ff;
-  transition: background 0.15s;
+/* ── Layout ── */
+
+.container {
+  max-width: 1100px;
+  margin: 32px auto;
+  padding: 0 20px;
+}
+
+h1 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  letter-spacing: -0.3px;
+}
+
+/* ── Formulário ── */
+
+.card {
+  background: var(--branco);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: var(--sombra);
+}
+
+.form-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.form-grid input {
+  flex: 1 1 180px;
+  padding: 8px 10px;
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  font-size: 13px;
+  font-family: inherit;
+  color: var(--texto);
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.form-grid input:focus {
+  border-color: var(--azul);
+}
+
+.form-acoes {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+/* ── Botões ── */
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 13px;
+  border: none;
+  border-radius: var(--raio);
+  padding: 8px 14px;
+  transition: opacity 0.15s, background 0.15s;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-primario {
+  background: var(--azul);
+  color: var(--branco);
+  font-weight: 600;
+}
+
+.btn-primario:hover:not(:disabled) {
+  opacity: 0.88;
+}
+
+.btn-secundario {
+  background: var(--branco);
+  color: var(--texto-fraco);
+  border: 1px solid var(--borda);
+}
+
+.btn-secundario:hover {
+  background: var(--fundo);
+}
+
+/* ── Upload de foto ── */
+
+.btn-upload {
+  background: var(--branco);
+  color: var(--azul);
+  border: 1px solid var(--azul);
+  font-weight: 600;
+}
+
+.btn-upload:hover {
+  background: var(--azul-fraco);
+}
+
+#upload-foto {
+  display: none;
+}
+
+.foto-preview-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#foto-preview {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--borda);
+}
+
+#foto-preview.hidden {
+  display: none;
+}
+
+
+.tabela-wrap {
+  background: var(--branco);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead tr {
+  background: var(--azul);
+  color: var(--branco);
+}
+
+thead th {
+  padding: 10px 14px;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+tbody tr {
+  border-bottom: 1px solid var(--borda);
+  transition: background 0.1s;
+}
+
+tbody tr:last-child {
+  border-bottom: none;
+}
+
+tbody tr:hover {
+  background: var(--azul-fraco);
+}
+
+tbody td {
+  padding: 10px 14px;
+  color: var(--texto);
+  font-size: 13px;
+  vertical-align: middle;
+}
+
+/* ── Foto na tabela ── */
+
+.foto-perfil {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--borda);
+  display: block;
+}
+
+.inicial-perfil {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--azul-fraco);
+  color: var(--azul);
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Botões de ação na tabela ── */
+
+.acoes {
+  display: flex;
+  gap: 4px;
+}
+
+.btn-edit,
+.btn-delete {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--raio);
+  background: transparent;
+  color: var(--texto-fraco);
+  font-size: 13px;
+}
+
+.btn-edit:hover {
+  background: var(--azul-fraco);
+  color: var(--azul);
+}
+
+.btn-delete:hover {
+  background: var(--vermelho-fraco);
+  color: var(--vermelho);
 }
